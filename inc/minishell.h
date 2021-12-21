@@ -15,9 +15,9 @@
 # define MINISHELL_H
 
 # include "../libft/inc/libft.h"
-# include "colors.h"
 # include "get_next_line.h"
 # include <fcntl.h>
+# include "colors.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>

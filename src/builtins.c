@@ -6,7 +6,7 @@
 /*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:08:07 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/12/03 19:17:27 by aperez-b         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:41:57 by aperez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	is_builtin(t_mini *n)
 	int		l;
 
 	if (!n->full_cmd)
+		return (0);
+	if ((n->full_cmd && ft_strchr(*n->full_cmd, '/')) || (n->full_path && \
+		ft_strchr(n->full_path, '/')))
 		return (0);
 	l = ft_strlen(*n->full_cmd);
 	if (!ft_strncmp(*n->full_cmd, "pwd", l) && l == 3)
@@ -106,22 +109,24 @@ int	mini_pwd(void)
 int	mini_echo(t_list *cmd)
 {
 	int		newline;
-	int		i;
+	int		i[2];
 	char	**argv;
 	t_mini	*node;
 
-	i = 0;
+	i[0] = 0;
+	i[1] = 0;
 	newline = 1;
 	node = cmd->content;
 	argv = node->full_cmd;
-	while (argv && argv[++i])
+	while (argv && argv[++i[0]])
 	{
-		if (!ft_strncmp(argv[i], "-n", 3))
+		if (!i[1] && !ft_strncmp(argv[i[0]], "-n", 3))
 			newline = 0;
 		else
 		{
-			ft_putstr_fd(argv[i], 1);
-			if (argv[i + 1])
+			i[1] = 1;
+			ft_putstr_fd(argv[i[0]], 1);
+			if (argv[i[0] + 1])
 				ft_putchar_fd(' ', 1);
 		}
 	}

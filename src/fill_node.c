@@ -57,15 +57,15 @@ static char	**get_trimmed(char **args)
 {
 	char	**temp;
 	char	*aux;
-	int		i;
+	int		j;
 
-	i = -1;
+	j = -1;
 	temp = ft_dup_matrix(args);
-	while (temp && temp[++i])
+	while (temp && temp[++j])
 	{
-		aux = ft_strtrim_all(temp[i], 0, 0);
-		free(temp[i]);
-		temp[i] = aux;
+		aux = ft_strtrim_all(temp[j], 0, 0);
+		free(temp[j]);
+		temp[j] = aux;
 	}
 	return (temp);
 }
