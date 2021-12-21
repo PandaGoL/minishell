@@ -81,11 +81,11 @@ char	*mini_getprompt(t_prompt prompt)
 	aux = get_home(prompt);
 	temp = ft_strjoin(temp2, aux);
 	free(aux);
-	free(temp2);
-	if (!prompt.e_status || prompt.e_status == -1)
-		temp2 = ft_strjoin(temp, BLUE);
-	else
-		temp2 = ft_strjoin(temp, RED);
+	// free(temp2);
+	// if (!prompt.e_status || prompt.e_status == -1)
+	// 	temp2 = ft_strjoin(temp, BLUE);
+	// else
+	// 	temp2 = ft_strjoin(temp, RED);
 	free(temp);
 	temp = ft_strjoin(temp2, "$ ");
 	free(temp2);
