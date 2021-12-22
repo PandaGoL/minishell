@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperez-b <aperez-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 17:02:33 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/11/22 18:46:06 by aperez-b         ###   ########.fr       */
+/*   Created: 2021/12/21 22:16:11 by cjothos           #+#    #+#             */
+/*   Updated: 2021/12/21 22:38:24 by cjothos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static char	*get_home(t_prompt prompt)
 		free(temp);
 	}
 	free(home);
-	home = ft_strjoin(BLUE, pwd);
+	home = ft_strjoin(NULL, pwd);
 	free(pwd);
 	pwd = ft_strjoin(home, " ");
 	free(home);
 	home = ft_strjoin(" ", pwd);
 	free(pwd);
-	pwd = ft_strjoin(home, DEFAULT);
+	pwd = ft_strjoin(home, NULL);
 	free(home);
 	return (pwd);
 }
@@ -44,27 +44,13 @@ static char	*get_user(t_prompt prompt)
 {
 	char	**user;
 	char	*temp;
-	char	*temp2;
 
 	user = NULL;
-	temp2 = NULL;
+	temp = NULL;
 	exec_custom(&user, "/usr/bin/whoami", "whoami", prompt.envp);
 	if (!user)
 		user = ft_extend_matrix(user, "guest");
-	if (!ft_strncmp(user[0], "root", 4))
-		temp2 = ft_strjoin(NULL, RED);
-	else if ((int)(user[0][0]) % 5 == 0)
-		temp2 = ft_strjoin(NULL, CYAN);
-	else if ((int)(user[0][0]) % 5 == 1)
-		temp2 = ft_strjoin(NULL, GRAY);
-	else if ((int)(user[0][0]) % 5 == 2)
-		temp2 = ft_strjoin(NULL, GREEN);
-	else if ((int)(user[0][0]) % 5 == 3)
-		temp2 = ft_strjoin(NULL, MAGENTA);
-	else
-		temp2 = ft_strjoin(NULL, YELLOW);
-	temp = ft_strjoin(temp2, *user);
-	free(temp2);
+	temp = ft_strjoin(temp, *user);
 	ft_free_matrix(&user);
 	return (temp);
 }
@@ -72,24 +58,32 @@ static char	*get_user(t_prompt prompt)
 char	*mini_getprompt(t_prompt prompt)
 {
 	char	*temp;
-	char	*temp2;
 	char	*aux;
+	char 	*temp2;
 
+	// temp = get_user(prompt);
+	// temp = ft_strjoin(temp, "@minishell");
+	// aux = get_home(prompt);
+	// temp = ft_strjoin(temp, aux);
+	// free(aux);
+	// temp = ft_strjoin(temp, "$ ");
+	// return (temp);
 	temp = get_user(prompt);
 	temp2 = ft_strjoin(temp, "@minishell");
 	free(temp);
 	aux = get_home(prompt);
 	temp = ft_strjoin(temp2, aux);
 	free(aux);
-	// free(temp2);
+	free(temp2);
 	// if (!prompt.e_status || prompt.e_status == -1)
 	// 	temp2 = ft_strjoin(temp, BLUE);
 	// else
 	// 	temp2 = ft_strjoin(temp, RED);
+	temp2 = ft_strjoin(temp, NULL);
 	free(temp);
 	temp = ft_strjoin(temp2, "$ ");
 	free(temp2);
-	temp2 = ft_strjoin(temp, DEFAULT);
+	temp2 = ft_strjoin(temp, NULL);
 	free(temp);
 	return (temp2);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/22 15:08:50 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/11/30 16:43:18 by aperez-b         ###   ########.fr       */
+/*   Created: 2021/12/21 22:16:11 by cjothos           #+#    #+#             */
+/*   Updated: 2021/12/21 22:38:24 by cjothos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../libft/inc/libft.h"
 # include "get_next_line.h"
 # include <fcntl.h>
-# include "colors.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
