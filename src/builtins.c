@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -32,8 +32,8 @@ int	builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n)
 			prompt->e_status = mini_unset(prompt);
 		else
 		{
-			signal(SIGINT, handle_sigint_child);
-			signal(SIGQUIT, handle_sigquit);
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
 			exec_cmd(prompt, cmd);
 		}
 		cmd = cmd->next;

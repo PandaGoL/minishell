@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,5 +40,5 @@ void	handle_sigint_child(int sig)
 void	handle_sigquit(int sig)
 {
 	if (sig == SIGQUIT)
-		write(1, "Quit: 3\n", 8);
+		write(2, "Quit: 3\n", 8);
 }
