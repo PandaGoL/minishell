@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -39,7 +39,7 @@ char	*get_here_str(char *str[2], size_t len, char *limit, char *warn)
 		free(str[0]);
 		signal(SIGINT, handle_sigint);
 		signal(SIGQUIT, SIG_IGN);
-		str[0] = readline("> ");
+		str[0] = readline("heredoc> ");
 		if (!str[0])
 		{
 			printf("%s (wanted `%s\')\n", warn, limit);

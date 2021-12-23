@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,6 +14,8 @@
 
 void	child_builtin(t_prompt *prompt, t_mini *n, int l, t_list *cmd)
 {
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (!is_builtin(n) && n->full_cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", l) \

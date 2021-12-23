@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjothos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,22 @@
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static pid_t	mini_getpid(t_prompt *prompt)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		mini_perror(prompt, FORKERR, NULL);
+		return (-1);
+	}
+	if (!pid)
+		exit(1);
+	waitpid(pid, NULL, 0);
+	return (pid - 1);
+}
 
 static t_prompt	init_vars(t_prompt prompt, char *str, char **argv, char **envp)
 {
@@ -48,6 +64,7 @@ static t_prompt	init_prompt(char **argv, char **envp)
 	prompt.cmds = NULL;
 	prompt.envp = ft_dup_matrix(envp);
 	prompt.e_status = 0;
+	prompt.pid = mini_getpid(&prompt);
 	prompt = init_vars(prompt, str, argv, envp);
 	return (prompt);
 }
