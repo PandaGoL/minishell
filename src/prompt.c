@@ -61,13 +61,6 @@ char	*mini_getprompt(t_prompt prompt)
 	char	*aux;
 	char 	*temp2;
 
-	// temp = get_user(prompt);
-	// temp = ft_strjoin(temp, "@minishell");
-	// aux = get_home(prompt);
-	// temp = ft_strjoin(temp, aux);
-	// free(aux);
-	// temp = ft_strjoin(temp, "$ ");
-	// return (temp);
 	temp = get_user(prompt);
 	temp2 = ft_strjoin(temp, "@minishell");
 	free(temp);
@@ -75,10 +68,6 @@ char	*mini_getprompt(t_prompt prompt)
 	temp = ft_strjoin(temp2, aux);
 	free(aux);
 	free(temp2);
-	// if (!prompt.e_status || prompt.e_status == -1)
-	// 	temp2 = ft_strjoin(temp, BLUE);
-	// else
-	// 	temp2 = ft_strjoin(temp, RED);
 	temp2 = ft_strjoin(temp, NULL);
 	free(temp);
 	temp = ft_strjoin(temp2, "$ ");
